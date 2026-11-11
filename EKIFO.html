@@ -1,0 +1,453 @@
+const properties = [
+  {
+    id: 1,
+    reference: 'EKF-KLA-00001',
+    title: '2 Bedroom Apartment in Kisaasi',
+    district: 'Kampala',
+    municipality: 'Makindye',
+    neighbourhood: 'Kisaasi',
+    category: 'Apartment',
+    bedrooms: 2,
+    bathrooms: 2,
+    rent: 1450000,
+    advanceMonths: 2,
+    deposit: 1450000,
+    otherCharges: 150000,
+    status: 'Approved',
+    available: 'Available',
+    condition: 'Good',
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80',
+    image2: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80',
+    image3: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80',
+    summary: 'Modern apartment with secure compound, water, electricity, parking and reliable internet.',
+    address: 'Kisaasi, Kampala',
+    truth: 'Identity verified • Ownership checked • Physical inspection completed • Availability confirmed'
+  },
+  {
+    id: 2,
+    reference: 'EKF-WKS-00008',
+    title: '1 Bedroom Studio in Lubowa',
+    district: 'Wakiso',
+    municipality: 'Entebbe Road',
+    neighbourhood: 'Lubowa',
+    category: 'Studio',
+    bedrooms: 1,
+    bathrooms: 1,
+    rent: 950000,
+    advanceMonths: 1,
+    deposit: 950000,
+    otherCharges: 120000,
+    status: 'Available',
+    available: 'Available',
+    condition: 'Good',
+    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1000&q=80',
+    image2: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
+    image3: 'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=800&q=80',
+    summary: 'Bright studio with quiet surroundings and easy access to major roads and shopping areas.',
+    address: 'Lubowa, Wakiso',
+    truth: 'Sample property — not a real verified house.'
+  },
+  {
+    id: 3,
+    reference: 'EKF-KLA-00009',
+    title: 'Single Room in Makindye',
+    district: 'Kampala',
+    municipality: 'Makindye',
+    neighbourhood: 'Makindye',
+    category: 'Single room',
+    bedrooms: 1,
+    bathrooms: 1,
+    rent: 420000,
+    advanceMonths: 1,
+    deposit: 420000,
+    otherCharges: 60000,
+    status: 'Reserved',
+    available: 'Reserved',
+    condition: 'Fair',
+    image: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1000&q=80',
+    image2: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80',
+    image3: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
+    summary: 'Simple and affordable room with shared facilities and near access to local services.',
+    address: 'Makindye, Kampala',
+    truth: 'Demo listing only.'
+  },
+  {
+    id: 4,
+    reference: 'EKF-WKS-00014',
+    title: '3 Bedroom Bungalow in Nansana',
+    district: 'Wakiso',
+    municipality: 'Nansana',
+    neighbourhood: 'Nansana',
+    category: 'Bungalow',
+    bedrooms: 3,
+    bathrooms: 2,
+    rent: 2100000,
+    advanceMonths: 2,
+    deposit: 2100000,
+    otherCharges: 200000,
+    status: 'Pending Verification',
+    available: 'Pending',
+    condition: 'Good',
+    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1000&q=80',
+    image2: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80',
+    image3: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80',
+    summary: 'Spacious bungalow with garden, parking, family-friendly environment and strong location access.',
+    address: 'Nansana, Wakiso',
+    truth: 'Awaiting admin review and physical inspection.'
+  },
+  {
+    id: 5,
+    reference: 'EKF-KLA-00016',
+    title: 'Modern Family House in Ntinda',
+    district: 'Kampala',
+    municipality: 'Nakawa',
+    neighbourhood: 'Ntinda',
+    category: 'Family house',
+    bedrooms: 4,
+    bathrooms: 3,
+    rent: 2800000,
+    advanceMonths: 2,
+    deposit: 2800000,
+    otherCharges: 300000,
+    status: 'Occupied',
+    available: 'Occupied',
+    condition: 'New',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80',
+    image2: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80',
+    image3: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80',
+    summary: 'Family house with living room, dining area, secure compound and office space.',
+    address: 'Ntinda, Kampala',
+    truth: 'Demo sample shown for interface testing.'
+  },
+  {
+    id: 6,
+    reference: 'EKF-WKS-00022',
+    title: '2 Bedroom Apartment in Kololo',
+    district: 'Kampala',
+    municipality: 'Kampala central',
+    neighbourhood: 'Kololo',
+    category: 'Apartment',
+    bedrooms: 2,
+    bathrooms: 2,
+    rent: 1750000,
+    advanceMonths: 2,
+    deposit: 1750000,
+    otherCharges: 180000,
+    status: 'Approved',
+    available: 'Available',
+    condition: 'Good',
+    image: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1000&q=80',
+    image2: 'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80',
+    image3: 'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=800&q=80',
+    summary: 'Boutique residence with premium finishing and easy access to schools and retail centres.',
+    address: 'Kololo, Kampala',
+    truth: 'Sample property only — no real property data used.'
+  }
+];
+
+function formatUGX(value) {
+  return `UGX ${new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(value)}`;
+}
+
+function renderFeaturedListings() {
+  const container = document.getElementById('featured-listings');
+  if (!container) return;
+
+  const featured = properties.slice(0, 6);
+  container.innerHTML = featured.map((property) => `
+    <article class="listing-card">
+      <img src="${property.image}" alt="${property.title}" />
+      <div class="listing-content">
+        <div class="listing-header">
+          <span class="status ${property.status === 'Approved' ? 'status-approved' : property.status === 'Pending Verification' ? 'status-pending' : property.status === 'Reserved' ? 'status-reserved' : 'status-suspended'}">
+            ${property.status}
+          </span>
+          <span class="small-label">${property.reference}</span>
+        </div>
+        <h3>${property.title}</h3>
+        <p class="meta-line">${property.neighbourhood}, ${property.district}</p>
+        <p class="meta-line">${property.bedrooms} bed • ${property.bathrooms} bath • ${property.category}</p>
+        <div class="listing-footer">
+          <strong>${formatUGX(property.rent)}</strong>
+          <a href="property.html?id=${property.id}">View details</a>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function getFilteredProperties() {
+  const district = document.getElementById('filter-district')?.value || 'All';
+  const neighbourhood = document.getElementById('filter-neighbourhood')?.value || 'All';
+  const rentRange = document.getElementById('filter-rent')?.value || 'All';
+  const category = document.getElementById('filter-category')?.value || 'All';
+  const bedrooms = document.getElementById('filter-bedrooms')?.value || 'All';
+  const status = document.getElementById('filter-status')?.value || 'All';
+
+  return properties.filter((property) => {
+    const districtMatch = district === 'All' || property.district === district;
+    const neighbourhoodMatch = neighbourhood === 'All' || property.neighbourhood === neighbourhood;
+    const categoryMatch = category === 'All' || property.category === category;
+    const statusMatch = status === 'All' || property.status === status || property.available === status;
+
+    let rentMatch = true;
+    if (rentRange !== 'All') {
+      const [min, max] = rentRange.split('-').map(Number);
+      rentMatch = property.rent >= min && property.rent <= max;
+    }
+
+    let bedroomMatch = true;
+    if (bedrooms !== 'All') {
+      bedroomMatch = Number(property.bedrooms) === Number(bedrooms);
+    }
+
+    return districtMatch && neighbourhoodMatch && categoryMatch && statusMatch && rentMatch && bedroomMatch;
+  });
+}
+
+function renderBrowseResults() {
+  const container = document.getElementById('browse-results');
+  if (!container) return;
+
+  const filtered = getFilteredProperties();
+  container.innerHTML = filtered.length
+    ? filtered.map((property) => `
+      <article class="listing-card">
+        <img src="${property.image}" alt="${property.title}" />
+        <div class="listing-content">
+          <div class="listing-header">
+            <span class="status ${property.status === 'Approved' ? 'status-approved' : property.status === 'Pending Verification' ? 'status-pending' : property.status === 'Reserved' ? 'status-reserved' : 'status-suspended'}">${property.status}</span>
+            <span class="small-label">${property.reference}</span>
+          </div>
+          <h3>${property.title}</h3>
+          <p class="meta-line">${property.neighbourhood}, ${property.district}</p>
+          <p class="meta-line">${property.bedrooms} bedrooms • ${property.bathrooms} bathrooms • ${property.category}</p>
+          <div class="listing-footer">
+            <strong>${formatUGX(property.rent)}</strong>
+            <a href="property.html?id=${property.id}">View details</a>
+          </div>
+        </div>
+      </article>
+    `).join('')
+    : `<div class="empty-state">No listings match the selected filters in this demo. Try another neighbourhood or budget.</div>`;
+}
+
+function initFilters() {
+  const filterIds = ['filter-district', 'filter-neighbourhood', 'filter-rent', 'filter-category', 'filter-bedrooms', 'filter-status'];
+  filterIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('change', renderBrowseResults);
+  });
+}
+
+function renderPropertyDetail() {
+  const root = document.getElementById('property-detail-root');
+  if (!root) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const propertyId = Number(params.get('id')) || 1;
+  const property = properties.find((item) => item.id === propertyId) || properties[0];
+
+  const initialCost = property.rent * property.advanceMonths + property.deposit + property.otherCharges;
+
+  root.innerHTML = `
+    <section class="property-shell">
+      <div class="container">
+        <div class="gallery-grid">
+          <div class="gallery-main">
+            <img src="${property.image}" alt="${property.title}" />
+          </div>
+          <div class="gallery-side">
+            <img src="${property.image2}" alt="${property.title} secondary image" />
+            <img src="${property.image3}" alt="${property.title} secondary image" />
+          </div>
+        </div>
+
+        <div class="property-layout">
+          <article class="property-main">
+            <div class="property-top-row">
+              <div>
+                <span class="small-label">${property.reference}</span>
+                <h1>${property.title}</h1>
+              </div>
+              <span class="status ${property.status === 'Approved' ? 'status-approved' : 'status-pending'}">${property.status}</span>
+            </div>
+
+            <p class="meta-line">${property.neighbourhood}, ${property.district} • ${property.category} • ${property.bedrooms} bedrooms</p>
+
+            <div class="detail-grid">
+              <div class="detail-box"><span>Rent</span><strong>${formatUGX(property.rent)}</strong></div>
+              <div class="detail-box"><span>Advance</span><strong>${property.advanceMonths} months</strong></div>
+              <div class="detail-box"><span>Deposit</span><strong>${formatUGX(property.deposit)}</strong></div>
+            </div>
+
+            <ul class="meta-list">
+              <li>📍 ${property.address}</li>
+              <li>🛏️ ${property.bedrooms} bedrooms • 🛁 ${property.bathrooms} bathrooms</li>
+              <li>🔒 ${property.condition} condition • Availability: ${property.available}</li>
+            </ul>
+
+            <div class="info-rows">
+              <section class="info-section">
+                <h3>EKIFOLINK TRUST STANDARD</h3>
+                <div class="truth-card">
+                  <div class="truth-item"><span>Inspection date</span><strong>2026-11-04</strong></div>
+                  <div class="truth-item"><span>Verification checks</span><strong>Owner identity • Ownership proof • Physical inspection</strong></div>
+                  <div class="truth-item"><span>Availability confirmation</span><strong>Last confirmed: 2026-11-08</strong></div>
+                  <div class="truth-item"><span>Property condition</span><strong>${property.condition}</strong></div>
+                  <div class="truth-item"><span>Cost overview</span><strong>${formatUGX(property.rent)} + ${formatUGX(property.deposit)} deposit</strong></div>
+                </div>
+              </section>
+
+              <section class="info-section">
+                <h3>Property summary</h3>
+                <p class="meta-line">${property.summary}</p>
+              </section>
+
+              <section class="info-section">
+                <h3>Amenities</h3>
+                <ul>
+                  <li>Secure gates and perimeter fencing</li>
+                  <li>Water and electricity availability</li>
+                  <li>Parking area</li>
+                  <li>Internet access</li>
+                  <li>Shared compound and visitor entry management</li>
+                </ul>
+              </section>
+
+              <section class="info-section">
+                <h3>Utilities and security</h3>
+                <ul>
+                  <li>Water: included</li>
+                  <li>Garbage: included</li>
+                  <li>Security guard: onsite</li>
+                  <li>Parking: compound parking</li>
+                  <li>Internet: separate charge</li>
+                </ul>
+              </section>
+
+              <section class="info-section">
+                <h3>Rental conditions</h3>
+                <ul>
+                  <li>Visitors allowed with prior notice</li>
+                  <li>Family tenants considered on request</li>
+                  <li>Small pets may be considered with approval</li>
+                  <li>Notice period: 30 days</li>
+                  <li>Rent increase policy: prior written notice</li>
+                </ul>
+              </section>
+
+              <section class="info-section">
+                <h3>Location</h3>
+                <p class="meta-line">Near Kisaasi Market and major access roads. Exact pin is shared only after viewing request review.</p>
+                <div class="map-box">Map placeholder • exact location to be confirmed by admin</div>
+              </section>
+            </div>
+          </article>
+
+          <aside class="side-panel">
+            <div class="price-box">
+              <p class="small-label">Monthly rent</p>
+              <h3>${formatUGX(property.rent)}</h3>
+              <p>Advance: ${property.advanceMonths} months • Deposit: ${formatUGX(property.deposit)}</p>
+              <p>Additional charges: ${formatUGX(property.otherCharges)}</p>
+            </div>
+
+            <div class="action-stack">
+              <a href="browse.html" class="btn btn-secondary">Back to listings</a>
+              <a href="submit-property.html" class="btn btn-primary">Request viewing</a>
+            </div>
+
+            <div class="truth-card" style="margin-top: 20px;">
+              <div class="truth-item"><span>Initial move-in cost</span><strong>${formatUGX(initialCost)}</strong></div>
+              <div class="truth-item"><span>Recurring payment</span><strong>${formatUGX(property.rent)}</strong></div>
+              <div class="truth-item"><span>One-off payment</span><strong>${formatUGX(property.deposit + property.otherCharges)}</strong></div>
+              <div class="truth-item"><span>Availability status</span><strong>${property.available}</strong></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function initPropertyForm() {
+  const form = document.getElementById('property-form');
+  if (!form) return;
+
+  const monthlyRent = document.getElementById('monthly-rent');
+  const advanceMonths = document.getElementById('advance-months');
+  const securityDeposit = document.getElementById('security-deposit');
+  const otherCharges = document.getElementById('other-charges');
+  const totalInitialCost = document.getElementById('total-initial-cost');
+  const titleInput = document.getElementById('listing-title');
+  const previewTitle = document.getElementById('preview-title');
+  const previewLocation = document.getElementById('preview-location');
+  const previewRent = document.getElementById('preview-rent');
+  const previewSummary = document.getElementById('preview-summary');
+
+  function updateTotals() {
+    const rent = Number(monthlyRent.value || 0);
+    const advance = Number(advanceMonths.value || 0);
+    const deposit = Number(securityDeposit.value || 0);
+    const charges = Number(otherCharges.value || 0);
+    const total = rent * advance + deposit + charges;
+    totalInitialCost.value = formatUGX(total);
+    previewRent.textContent = formatUGX(rent);
+    previewSummary.textContent = `${(document.getElementById('bedrooms')?.value || '2')} bedrooms • ${(document.getElementById('bathrooms')?.value || '2')} bathrooms • ${advance} months advance • Security deposit: ${formatUGX(deposit)}`;
+  }
+
+  function updatePreview() {
+    const title = titleInput.value || '2 Bedroom Apartment in Kisaasi';
+    const district = document.getElementById('district')?.value || 'Kampala';
+    const neighbourhood = document.getElementById('neighbourhood')?.value || 'Kisaasi';
+    previewTitle.textContent = title;
+    previewLocation.textContent = `${district} • ${neighbourhood}`;
+    updateTotals();
+  }
+
+  [monthlyRent, advanceMonths, securityDeposit, otherCharges, titleInput, document.getElementById('district'), document.getElementById('neighbourhood'), document.getElementById('bedrooms'), document.getElementById('bathrooms')].forEach((field) => {
+    if (field) field.addEventListener('input', updatePreview);
+    if (field) field.addEventListener('change', updatePreview);
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    alert('Sample form submitted. This is a prototype only. Listing will remain Pending Verification until an administrator reviews it.');
+  });
+
+  updatePreview();
+}
+
+function initDashboardCards() {
+  const dashboardCards = document.querySelectorAll('.kpi-card strong');
+  dashboardCards.forEach((card) => {
+    card.style.color = '#0f3d2e';
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderFeaturedListings();
+  renderBrowseResults();
+  initFilters();
+  renderPropertyDetail();
+  initPropertyForm();
+  initDashboardCards();
+});
+
+if (window.location.pathname.includes('browse.html')) {
+  initFilters();
+}
+
+if (window.location.pathname.includes('property.html')) {
+  renderPropertyDetail();
+}
+
+if (window.location.pathname.includes('submit-property.html')) {
+  initPropertyForm();
+}
+
+if (window.location.pathname.includes('admin-dashboard.html') || window.location.pathname.includes('owner-dashboard.html')) {
+  initDashboardCards();
+}
