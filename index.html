@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EkifoLink | Verified Property Rental Marketplace Uganda</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            DEFAULT: '#1B4D3E',
+                            dark: '#123528',
+                            light: '#2C7A63',
+                            subtle: '#E8F2EE'
+                        },
+                        charcoal: {
+                            DEFAULT: '#222222',
+                            light: '#444444',
+                            muted: '#777777'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-charcoal font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Prototype Notice Banner -->
+    <div class="bg-amber-100 border-b border-amber-300 text-amber-900 px-4 py-2 text-xs sm:text-sm text-center font-medium">
+        <i class="fa-solid fa-triangle-exclamation mr-1"></i> **PROTOTYPE DEMONSTRATION MODE:** Sample data only. Database persistence, real payments, and document verification are not active in this frontend build.
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-lg bg-forest flex items-center justify-center text-white font-bold text-xl shadow">
+                    EL
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-forest">Ekifo<span class="text-charcoal-light">Link</span></span>
+                    <span class="block text-[10px] uppercase tracking-widest text-forest-light font-semibold">Kampala & Wakiso</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-link text-forest font-semibold transition pb-1 border-b-2 border-forest">Home</button>
+                <button onclick="switchTab('browse')" id="nav-browse" class="nav-link text-charcoal hover:text-forest transition pb-1 border-b-2 border-transparent">Browse Rentals</button>
+                <button onclick="switchTab('submit')" id="nav-submit" class="nav-link text-charcoal hover:text-forest transition pb-1 border-b-2 border-transparent">List Property</button>
+                <button onclick="switchTab('owner-dash')" id="nav-owner-dash" class="nav-link text-charcoal hover:text-forest transition pb-1 border-b-2 border-transparent">Owner Portal</button>
+                <button onclick="switchTab('admin-dash')" id="nav-admin-dash" class="nav-link bg-forest text-white px-3 py-1.5 rounded-lg hover:bg-forest-dark transition shadow-sm"><i class="fa-solid fa-shield-halved mr-1"></i> Admin Workspace</button>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="flex items-center space-x-3 md:hidden">
+                <button onclick="switchTab('admin-dash')" class="bg-forest text-white px-2.5 py-1.5 rounded-md text-xs font-medium"><i class="fa-solid fa-shield-halved"></i> Admin</button>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-charcoal p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-4 space-y-2">
+            <button onclick="switchTab('home'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-forest-subtle font-medium text-forest">Home</button>
+            <button onclick="switchTab('browse'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-forest-subtle font-medium">Browse Rentals</button>
+            <button onclick="switchTab('submit'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-forest-subtle font-medium">List Property</button>
+            <button onclick="switchTab('owner-dash'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-forest-subtle font-medium">Owner Portal</button>
+            <button onclick="switchTab('auth'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded hover:bg-forest-subtle font-medium text-forest-light"><i class="fa-solid fa-user-lock mr-1"></i> Login / Register</button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <div id="page-home" class="tab-content">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-br from-forest-dark via-forest to-forest-light text-white py-16 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+                <div class="max-w-4xl mx-auto space-y-6 relative z-10">
+                    <span class="inline-block bg-white/15 backdrop-blur-md text-emerald-200 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider border border-white/20">
+                        <i class="fa-solid fa-shield-check mr-1"></i> The EkifoLink Trust Standard in Kampala & Wakiso
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Rent Verified Houses Directly with Total Transparency
+                    </h1>
+                    <p class="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto font-light">
+                        No fake listings. No hidden surprise fees. Personally inspected properties, transparent cost breakdowns, and managed viewing coordination.
+                    </p>
+
+                    <!-- Prominent Search Bar Card -->
+                    <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-2xl text-charcoal mt-8 max-w-3xl mx-auto">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1 text-left">Location / Zone</label>
+                                <select id="search-location" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                                    <option value="">All Kampala & Wakiso</option>
+                                    <option value="Ntinda">Ntinda, Kampala</option>
+                                    <option value="Muyenga">Muyenga, Kampala</option>
+                                    <option value="Kisaasi">Kisaasi, Kampala</option>
+                                    <option value="Naalya">Naalya, Wakiso</option>
+                                    <option value="Kira">Kira, Wakiso</option>
+                                    <option value="Najjera">Najjera, Wakiso</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1 text-left">Property Type</label>
+                                <select id="search-type" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                                    <option value="">All Property Types</option>
+                                    <option value="Single Room">Single Room</option>
+                                    <option value="Self-Contained">Single Self-Contained</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="Family House">Family House</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1 text-left">Max Monthly Rent</label>
+                                <select id="search-budget" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                                    <option value="">Any Budget</option>
+                                    <option value="500000">Up to UGX 500,000</option>
+                                    <option value="1000000">Up to UGX 1,000,000</option>
+                                    <option value="2000000">Up to UGX 2,000,000</option>
+                                    <option value="5000000">Up to UGX 5,000,000</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="performSearch()" class="w-full bg-forest hover:bg-forest-dark text-white font-bold py-3 px-6 rounded-xl transition shadow-md flex items-center justify-center space-x-2 text-base">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Search Verified Properties</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Value Proposition Highlights -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="w-12 h-12 bg-forest-subtle text-forest rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Physical Verification</h3>
+                        <p class="text-sm text-charcoal-muted">Our administrators personally inspect every property, verify ownership authority, and check actual conditions.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="w-12 h-12 bg-forest-subtle text-forest rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Transparent Costs</h3>
+                        <p class="text-sm text-charcoal-muted">No hidden fees. See monthly rent, advance requirements, security deposits, and total initial move-in costs upfront.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+                        <div class="w-12 h-12 bg-forest-subtle text-forest rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-charcoal mb-2">Managed Viewings</h3>
+                        <p class="text-sm text-charcoal-muted">Request viewings securely. Our team coordinates directly with verified owners so you inspect safely and reliably.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Listings Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-charcoal">Featured Verified Properties</h2>
+                        <p class="text-sm text-charcoal-muted">Demonstration listings inspected and verified under EkifoLink standards.</p>
+                    </div>
+                    <button onclick="switchTab('browse')" class="mt-2 sm:mt-0 text-forest font-semibold text-sm hover:underline flex items-center">
+                        View All Listings <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+
+                <div id="featured-listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Populated dynamically by JavaScript -->
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 2: BROWSE PROPERTIES ================= -->
+        <div id="page-browse" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-6">
+                <h1 class="text-3xl font-extrabold text-charcoal">Browse Verified Rentals</h1>
+                <p class="text-sm text-charcoal-muted">Explore rental houses across Kampala and Wakiso with guaranteed trust indicators.</p>
+            </div>
+
+            <!-- Filter Toolbar -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 mb-8 grid grid-cols-1 sm:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">District / Location</label>
+                    <select id="filter-district" onchange="filterProperties()" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2 text-sm">
+                        <option value="">All Districts</option>
+                        <option value="Kampala">Kampala</option>
+                        <option value="Wakiso">Wakiso</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Property Category</label>
+                    <select id="filter-category" onchange="filterProperties()" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2 text-sm">
+                        <option value="">All Categories</option>
+                        <option value="Single Room">Single Room</option>
+                        <option value="Self-Contained">Single Self-Contained</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Family House">Family House</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Max Rent (UGX)</label>
+                    <select id="filter-max-rent" onchange="filterProperties()" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2 text-sm">
+                        <option value="">Any Budget</option>
+                        <option value="500000">UGX 500,000</option>
+                        <option value="1000000">UGX 1,000,000</option>
+                        <option value="2000000">UGX 2,000,000</option>
+                        <option value="5000000">UGX 5,000,000</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button onclick="resetFilters()" class="w-full bg-gray-100 hover:bg-gray-200 text-charcoal font-medium py-2 px-4 rounded-lg text-sm transition">
+                        Reset Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Property Results Grid -->
+            <div id="browse-listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically by JavaScript -->
+            </div>
+        </div>
+
+        <!-- ================= PAGE 3: PROPERTY DETAILS & TRUTH CARD ================= -->
+        <div id="page-details" class="tab-content hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <button onclick="switchTab('browse')" class="mb-6 text-forest font-semibold text-sm hover:underline flex items-center">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back to Browse
+            </button>
+
+            <div id="property-details-container">
+                <!-- Populated dynamically by JavaScript -->
+            </div>
+        </div>
+
+        <!-- ================= PAGE 4: OWNER / CARETAKER REGISTRATION & LOGIN ================= -->
+        <div id="page-auth" class="tab-content hidden max-w-md mx-auto px-4 py-12">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-charcoal">Owner & Caretaker Portal</h2>
+                    <p class="text-sm text-charcoal-muted mt-1">Manage your properties and track subscriptions</p>
+                </div>
+
+                <div class="flex border-b border-gray-200 mb-6">
+                    <button onclick="switchAuthTab('login')" id="auth-tab-login" class="flex-1 pb-3 text-sm font-bold text-forest border-b-2 border-forest">Login</button>
+                    <button onclick="switchAuthTab('register')" id="auth-tab-register" class="flex-1 pb-3 text-sm font-semibold text-gray-400 border-b-2 border-transparent">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="auth-login-form" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Telephone Number</label>
+                        <input type="text" placeholder="+256 700 000000" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Password</label>
+                        <input type="password" placeholder="••••••••" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                    </div>
+                    <button onclick="alert('Prototype mode: Login simulation successful.')" class="w-full bg-forest hover:bg-forest-dark text-white font-bold py-3 rounded-xl transition shadow">
+                        Sign In to Owner Portal
+                    </button>
+                </div>
+
+                <!-- Register Form -->
+                <div id="auth-register-form" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Full Name</label>
+                        <input type="text" placeholder="John Mukasa" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Telephone Number</label>
+                        <input type="text" placeholder="+256 770 000000" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Role</label>
+                        <select class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                            <option value="owner">Property Owner</option>
+                            <option value="caretaker">Authorized Caretaker</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Password</label>
+                        <input type="password" placeholder="••••••••" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-forest focus:outline-none">
+                    </div>
+                    <button onclick="alert('Prototype mode: Registration recorded. Pending backend setup.')" class="w-full bg-forest hover:bg-forest-dark text-white font-bold py-3 rounded-xl transition shadow">
+                        Create Owner Account
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 5: PROPERTY SUBMISSION FORM ================= -->
+        <div id="page-submit" class="tab-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
+                <div class="border-b border-gray-200 pb-4 mb-6">
+                    <span class="bg-forest-subtle text-forest text-xs font-bold px-3 py-1 rounded-full uppercase">EkifoLink Submission Standard</span>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-charcoal mt-2">Submit a Property for Verification</h1>
+                    <p class="text-sm text-charcoal-muted mt-1">Complete all 8 sections accurately. Submitted listings are marked <span class="font-semibold text-amber-600">Pending Verification</span> and will not appear publicly until administrator approval.</p>
+                </div>
+
+                <form onsubmit="handlePropertySubmission(event)" class="space-y-8">
+                    
+                    <!-- SECTION 1: PROPERTY IDENTITY -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-lg font-bold text-forest mb-4 flex items-center">
+                            <span class="w-7 h-7 bg-forest text-white rounded-full inline-flex items-center justify-center text-xs mr-2">1</span>
+                            Property Identity
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Listing Title *</label>
+                                <input type="text" required placeholder="e.g., Modern 2-Bedroom Self-Contained Apartment in Ntinda" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Property Category *</label>
+                                <select required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                                    <option value="">Select category...</option>
+                                    <option value="Single Room">Single Room</option>
+                                    <option value="Self-Contained">Single Self-Contained</option>
+                                    <option value="Double Self-Contained">Double Self-Contained</option>
+                                    <option value="Studio">Studio</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="Bungalow">Bungalow</option>
+                                    <option value="Family House">Family House</option>
+                                    <option value="Shop">Shop</option>
+                                    <option value="Office">Office</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Condition *</label>
+                                <select required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                                    <option value="Brand New">Brand New</option>
+                                    <option value="Newly Renovated">Newly Renovated</option>
+                                    <option value="Good / Well Maintained">Good / Well Maintained</option>
+                                    <option value="Needs Minor Touch-ups">Needs Minor Touch-ups</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Bedrooms</label>
+                                <input type="number" min="0" value="2" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Bathrooms</label>
+                                <input type="number" min="1" value="2" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Kitchen Type</label>
+                                <select class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                                    <option value="Indoor Kitchen">Indoor Kitchen</option>
+                                    <option value="Open Plan Kitchen">Open Plan Kitchen</option>
+                                    <option value="Shared Kitchen">Shared Kitchen</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Available Date *</label>
+                                <input type="date" required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: FINANCIAL DETAILS -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-lg font-bold text-forest mb-4 flex items-center">
+                            <span class="w-7 h-7 bg-forest text-white rounded-full inline-flex items-center justify-center text-xs mr-2">2</span>
+                            Financial Details (UGX)
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Monthly Rent (UGX) *</label>
+                                <input type="number" id="form-rent" oninput="calculateMoveInCost()" required placeholder="800000" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Advance Months *</label>
+                                <input type="number" id="form-advance" oninput="calculateMoveInCost()" min="1" value="6" required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Security Deposit (UGX)</label>
+                                <input type="number" id="form-deposit" oninput="calculateMoveInCost()" value="200000" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div class="sm:col-span-3 bg-forest-subtle p-4 rounded-lg flex justify-between items-center">
+                                <span class="font-bold text-forest">Total Initial Move-In Cost (Calculated Automatically):</span>
+                                <span id="form-total-cost" class="text-lg font-extrabold text-forest">UGX 0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: LOCATION -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-lg font-bold text-forest mb-4 flex items-center">
+                            <span class="w-7 h-7 bg-forest text-white rounded-full inline-flex items-center justify-center text-xs mr-2">3</span>
+                            Location Details
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">District *</label>
+                                <select required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                                    <option value="Kampala">Kampala</option>
+                                    <option value="Wakiso">Wakiso</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Municipality / Division *</label>
+                                <input type="text" required placeholder="e.g., Nakawa Division" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Neighbourhood / Parish *</label>
+                                <input type="text" required placeholder="e.g., Ntinda" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nearby Landmark *</label>
+                                <input type="text" required placeholder="e.g., Near Stretcher Stage" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 4: PHOTOS AND VIDEO -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-lg font-bold text-forest mb-4 flex items-center">
+                            <span class="w-7 h-7 bg-forest text-white rounded-full inline-flex items-center justify-center text-xs mr-2">4</span>
+                            Photos & Walkthrough Video
+                        </h3>
+                        <p class="text-xs text-charcoal-muted mb-4">Upload at least 5 clear photographs (Living room, bedrooms, kitchen, bathrooms, and compound) plus a short walkthrough video.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Property Photographs (Multiple) *</label>
+                                <input type="file" multiple accept="image/*" required class="w-full border border-gray-300 bg-white rounded-lg p-2 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Walkthrough Video *</label>
+                                <input type="file" accept="video/*" required class="w-full border border-gray-300 bg-white rounded-lg p-2 text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 5: UTILITIES AND FACILITIES -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-lg font-bold text-forest mb-4 flex items-center">
+                            <span class="w-7 h-7 bg-forest text-white rounded-full inline-flex items-center justify-center text-xs mr-2">5</span>
+                            Utilities & Facilities
+                        </h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="checkbox" checked class="rounded text-forest"> <span>National Water</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="checkbox" checked class="rounded text-forest"> <span>Umeme Electricity</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="checkbox" checked class="rounded text-forest"> <span>Garbage Collection</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="checkbox" checked class="rounded text-forest"> <span>Security Guard</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="checkbox" checked class="rounded text-forest"> <span>Perimeter Wall / Fence</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="checkbox" checked class="rounded text-forest"> <span>Ample Parking</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 6: RENTAL CONDITIONS -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-lg font-bold text-forest mb-4 flex items-center">
+                            <span class="w-7 h-7 bg-forest text-white rounded-full inline-flex items-center justify-center text-xs mr-2">6</span>
+                            Rental Conditions & Rules
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Notice Period</label>
+                                <input type="text" value="2 Months Notice" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Pets Policy</label>
+                                <input type="text" value="Small pets allowed upon agreement" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 7: OWNER / CARETAKER INFORMATION -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h3 class="text-lg font-bold text-forest mb-4 flex items-center">
+                            <span class="w-7 h-7 bg-forest text-white rounded-full inline-flex items-center justify-center text-xs mr-2">7</span>
+                            Owner or Caretaker Information
+                        </h3>
+                        <div class="bg-amber-50 border border-amber-200 p-3 rounded-lg text-xs text-amber-800 mb-4">
+                            <i class="fa-solid fa-lock mr-1"></i> <strong>Privacy Notice:</strong> Identity documents and ownership proof are strictly private and accessible only to authorised EkifoLink administrators. They are never publicly displayed.
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name *</label>
+                                <input type="text" required placeholder="John Mukasa" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Telephone *</label>
+                                <input type="text" required placeholder="+256 700 000000" class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Role *</label>
+                                <select required class="w-full border border-gray-300 rounded-lg p-2.5 text-sm">
+                                    <option value="Owner">Property Owner</option>
+                                    <option value="Caretaker">Authorized Caretaker</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Identity Document (NIN / Passport) *</label>
